@@ -28,7 +28,7 @@ cd ..; rm ./tmp/*.sql;
  */
   return deckGenerator()
     .then((sql) => {
-      const fileName = `${__dirname}/tmp/${v4()}.sql`;
+      const fileName = `${__dirname}/processing/${v4()}.sql`;
       fs.writeFileSync(fileName, sql);
       return fileName;
     })

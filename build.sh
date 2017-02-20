@@ -2,4 +2,4 @@
 
 echo "Starting build..."
 
-rm tmp/*.sql; node ./bin/generateSqlDB.js; mv ./some-db-file.sqlt ./tmp/collection.anki2; cd tmp/; zip test.apkg collection.anki2 media; cd ..
+rm processing/*.sql; node ./bin/generateSqlDB.js; mv ./some-db-file.sqlt ./processing/collection.anki2; cd processing/; zip test.apkg collection.anki2 media; cd ..

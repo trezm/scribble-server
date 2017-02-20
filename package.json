@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "./node_modules/.bin/nodemon -i output/* -i tmp/*",
+    "dev": "./node_modules/.bin/nodemon -i output/* -i processing/*",
     "start": "node index.js",
     "prod": "node index.js"
   },

@@ -6,7 +6,7 @@ const sqlDBGenerator = require('../sqlDBGenerator').makeDb;
 
 deckGenerator()
   .then((sql) => {
-    const fileName = `./tmp/${v4()}.sql`;
+    const fileName = `./processing/${v4()}.sql`;
     fs.writeFileSync(fileName, sql);
     return fileName;
   })

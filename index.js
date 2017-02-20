@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, `${__dirname}/tmp/`);
+    callback(null, `${__dirname}/processing/`);
   },
   filename: (req, file, callback) => {
     const mimeType = file.mimetype;
@@ -62,10 +62,14 @@ app
       media[keyCount + 1] = req.files['bottom-image'][0].filename;
 
       fs.writeFileSync(`${__dirname}/templates/media.json`, JSON.stringify(media, null, 2));
-      fs.writeFileSync(`${__dirname}/tmp/media`, JSON.stringify(media));
+      fs.writeFileSync(`${__dirname}/processing/media`, JSON.stringify(media));
 
-      fs.renameSync(`${__dirname}/tmp/${req.files['top-image'][0].filename}`, `./tmp/${keyCount}`);
-      fs.renameSync(`${__dirname}/tmp/${req.files['bottom-image'][0].filename}`, `./tmp/${keyCount + 1}`);
+      fs.renameSync(
+        `${__dirname}/processing/${req.files['top-image'][0].filename}`,
+        `${__dirname}/processing/${keyCount}`);
+      fs.renameSync(
+        `${__dirname}/processing/${req.files['bottom-image'][0].filename}`,
+        `${__dirname}/processing/${keyCount + 1}`);
 
       deckGenerator.createNoteAndCard(
         `<img src="${req.files['top-image'][0].filename}"/>`,
