@@ -1,0 +1,6 @@
+version: '1'
+services:
+  scribble-server:
+    build: .
+    ports:
+    - "80:3000"
