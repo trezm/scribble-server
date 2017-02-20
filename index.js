@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, './tmp/');
+    callback(null, `${__dirname}/tmp/`);
   },
   filename: (req, file, callback) => {
     const mimeType = file.mimetype;
@@ -61,11 +61,11 @@ app
       media[keyCount] = req.files['top-image'][0].filename;
       media[keyCount + 1] = req.files['bottom-image'][0].filename;
 
-      fs.writeFileSync('./templates/media.json', JSON.stringify(media, null, 2));
-      fs.writeFileSync('./tmp/media', JSON.stringify(media));
+      fs.writeFileSync(`${__dirname}/templates/media.json`, JSON.stringify(media, null, 2));
+      fs.writeFileSync(`${__dirname}/tmp/media`, JSON.stringify(media));
 
-      fs.renameSync(`./tmp/${req.files['top-image'][0].filename}`, `./tmp/${keyCount}`);
-      fs.renameSync(`./tmp/${req.files['bottom-image'][0].filename}`, `./tmp/${keyCount + 1}`);
+      fs.renameSync(`${__dirname}/tmp/${req.files['top-image'][0].filename}`, `./tmp/${keyCount}`);
+      fs.renameSync(`${__dirname}/tmp/${req.files['bottom-image'][0].filename}`, `./tmp/${keyCount + 1}`);
 
       deckGenerator.createNoteAndCard(
         `<img src="${req.files['top-image'][0].filename}"/>`,

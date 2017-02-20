@@ -1,5 +1,5 @@
-version: '1'
-services:
+#version: '1'
+#services:
   scribble-server:
     build: .
     ports:
