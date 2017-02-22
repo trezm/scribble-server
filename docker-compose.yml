@@ -3,4 +3,6 @@
   scribble-server:
     build: .
     ports:
-    - "3000:3000"
+      - "3000:3000"
+    volumes:
+      - ./output:/src/output
