@@ -229,7 +229,15 @@ function generateSql() {
   });
 }
 
+function resetDeck() {
+  fs.writeFileSync(`${__dirname}/templates/media.json`, JSON.stringify({}, null, 2));
+  fs.writeFileSync(`${__dirname}/processing/media`, JSON.stringify({}));
+  fs.writeFileSync(`${__dirname}/templates/notes.json`, JSON.stringify([]));
+  fs.writeFileSync(`${__dirname}/templates/cards.json`, JSON.stringify([]));
+}
+
 module.exports = {
   createNoteAndCard: createNoteAndCard,
-  generateSql: generateSql
+  generateSql: generateSql,
+  resetDeck: resetDeck
 };

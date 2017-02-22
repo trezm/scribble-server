@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
+const fsExtra = require('fs-extra');
 const deckGenerator = require('./deckGenerator');
 const sqlDBGenerator = require('./sqlDBGenerator');
 
@@ -43,12 +44,12 @@ app
   })
   .get('/latest.apkg', (req, res) => {
     res.sendFile(`${__dirname}/output/deck.apkg`)
+
+    fsExtra.copySync(`${__dirname}/output/deck.apkg`, `${__dirname}/output/deck-${Date.now()}.apkg`)
+    deckGenerator.resetDeck();
   })
   .delete('/api/decks', (req, res) => {
-    fs.writeFileSync(`${__dirname}/templates/media.json`, JSON.stringify({}, null, 2));
-    fs.writeFileSync(`${__dirname}/processing/media`, JSON.stringify({}));
-    fs.writeFileSync(`${__dirname}/templates/notes.json`, JSON.stringify([]));
-    fs.writeFileSync(`${__dirname}/templates/cards.json`, JSON.stringify([]));
+    deckGenerator.resetDeck();
 
     res.json({
       success: true
