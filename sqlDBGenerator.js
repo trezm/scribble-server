@@ -19,13 +19,6 @@ function makeDb(scriptFile, dbFile) {
 }
 
 function generateAnkiAndClean() {
-/**
- * node bin/generateSqlDB.js;
-mv some-db-file.sqlt ./tmp/collection.anki2;
-cd ./tmp; zip ../deck.apkg ./*;
-cd ..; rm ./tmp/*.sql;
-
- */
   return deckGenerator()
     .then((sql) => {
       const fileName = `${__dirname}/processing/${v4()}.sql`;

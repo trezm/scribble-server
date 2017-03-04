@@ -57,7 +57,14 @@ app
   })
   .post('/api/photo', (req, res) => {
     upload(req, res, (err) => {
-      let media = require('./templates/media.json');
+      let media;
+
+      try {
+        media = JSON.parse(fs.readFileSync(`${__dirname}/templates/media.json`));
+      } catch (e) {
+        media = {};
+      }
+
       const keyCount = Object.keys(media) && Object.keys(media).length || 0;
 
       if (err) {
@@ -102,5 +109,5 @@ app
     });
   })
   .listen(PORT, () => {
-    console.log(`Started on ${PORT}...`);
+    console.log(`v0.1 Started on ${PORT}...`);
   });
