@@ -60,7 +60,7 @@ function generateSql() {
     deckId: DECK_ID,
     configuration: JSON.stringify(configuration),
     models: JSON.stringify(models),
-    decks: JSON.stringify(decks(`A deck ${Date.now()}`)),
+    decks: JSON.stringify(decks(`Deck from ${new Date().toString()}`)),
     deckConfiguration: JSON.stringify(deckConfiguration),
     notes: notes,
     cards: cards,
